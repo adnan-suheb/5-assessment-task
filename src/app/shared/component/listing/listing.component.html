@@ -1,0 +1,65 @@
+<div class="listing-container">
+    <!-- Header Toolbar -->
+    <mat-toolbar color="primary">
+      <span>Company Logo</span>
+      <span class="spacer"></span>
+      <mat-icon>notifications</mat-icon>
+      <mat-icon>language</mat-icon>
+      <mat-icon>account_circle</mat-icon>
+    </mat-toolbar>
+
+    <div class="content">
+      <div class="left-panel">
+        <h3>Categories</h3>
+        <button class="m-1" mat-raised-button
+                (click)="selectCategory('flowers')"
+                [class.selected]="selectedCategory === 'flowers'">Flowers</button>
+        <button class="m-1" mat-raised-button
+                (click)="selectCategory('electronics')"
+                [class.selected]="selectedCategory === 'electronics'">Electronics</button>
+      </div>
+
+      <div class="right-panel">
+        <!-- Search and Sort Fields -->
+        <mat-form-field class="full-width">
+          <mat-label>Search Rewards</mat-label>
+          <input matInput [(ngModel)]="searchQuery" placeholder="Search by name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Sort by</mat-label>
+          <mat-select [(ngModel)]="sortOrder">
+            <mat-option value="asc">A to Z</mat-option>
+            <mat-option value="desc">Z to A</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Rewards List -->
+        <div class="row">
+          <div class="col-md-4 col-sm-6 rewards" *ngFor="let reward of paginatedRewards">
+            <mat-card class="p-2">
+              <img [src]="reward.display_img_url || 'https://picsum.photos/200/300'" alt="Reward Image">
+              <h4>{{ reward.name }}</h4>
+              <p>Points: {{ reward.points }}</p>
+              <p *ngIf="reward.quantity === 0" class="out-of-stock">Out of Stock</p>
+              <p *ngIf="reward.quantity !== null && reward.quantity <= reward.low_quantity" class="high-demand">
+                ON High Demand (Only {{ reward.quantity }} rewards left)
+              </p>
+            </mat-card>
+          </div>
+        </div>
+
+        <!-- Mat Paginator -->
+        <mat-paginator [length]="filteredRewards.length"
+                       [pageSize]="pageSize"
+                       [pageIndex]="pageIndex"
+                       (page)="onPageChange($event)">
+        </mat-paginator>
+      </div>
+    </div>
+
+    <!-- Footer Toolbar -->
+    <mat-toolbar color="primary" class="footer">
+      <span>Company Logo</span>
+      <span>© {{ currentYear }} | Version 1.0 | About</span>
+    </mat-toolbar>
+  </div>

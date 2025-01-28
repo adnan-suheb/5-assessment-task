@@ -1,0 +1,53 @@
+.listing-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+  }
+
+  .left-panel {
+    width: 20%;
+    padding: 20px;
+  }
+
+  .right-panel {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .rewards mat-card {
+    margin: 10px;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .out-of-stock {
+    color: red;
+  }
+
+  .high-demand {
+    color: orange;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button.selected {
+    background-color: #3f51b5; /* Primary color */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    font-weight: bold; /* Make text bold */
+  }
+
+  button.selected:hover {
+    background-color: #303f9f; /* Darker shade on hover */
+  }
+
